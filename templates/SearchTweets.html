@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Tweets</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    .center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    }
+    </style>
+</head>
+<body>
+
+    <form id="SearchTweets"  method="post" target="">
+            <div class="center">
+                <h3>Description</h3>
+                <p>Returns a collection of relevant Tweets matching a specified query.</p>
+                <h3>Resource URL</h3>
+                <p class="resource-url">https://api.twitter.com/1.1/search/tweets.json</p>
+                <h3>Parameters</h3>
+                <div class="form-group">
+                    <label class="control-label">q <span class="label label-danger">required</span></label>
+                    <input type="text" class="form-control" name="parameters_q" id="input_q">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">geocode <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_geocode" id="input_geocode">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">lang <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_lang" id="input_lang">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">locale <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_locale" id="input_locale">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">result_type <span class="label label-info">optional</span></label>
+                    <label for="search:result_type:mixed" ><input type="radio" name="parameters_result_type" value="true" id="input_mixed">mixed</label>
+                    <label for="search:result_type:recent"><input type="radio" name="parameters_result_type" value="true" id="input_recent">recent</label>
+                    <label for="search:result_type:popular"><input type="radio" name="parameters_result_type" value="true" id="input_popular">popular</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">count <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_count" id="input_count">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">until <span class="label label-info">optional</span></label>
+                    <input type="date" name="parameters_until" id="input_date">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">since_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_since_id" id="input_since">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">max_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_max_id" id="input_max">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">include_entities <span class="label label-info">optional</span></label>
+                    <label for="search:include_entities:1"><input type="radio" name="parameters_include_entities" value="true" id="input_include_entities:1">true</label>
+                    <label for="search:include_entities:0"><input type="radio" name="parameters_include_entities" value="" id="input_include_entities:0">false</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">callback <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_callback" id="input_callback">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="Validation()">Submit</button>
+            </div><!-- /.panel-body -->
+    </form>
+</body>
+</html>
+
+<script>
+function Validation() {
+   $.ajax({
+   type: "POST",
+   url: "/SearchUsingParams",
+   data: { param: JSON.stringify($('#SearchTweets').serialize()) }
+}).done(function( o ) {
+   alert(o)
+});
+}
+
+</script>
