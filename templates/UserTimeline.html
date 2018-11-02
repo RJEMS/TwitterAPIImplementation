@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Timeline</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    .center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    }
+    </style>
+</head>
+<body>
+
+    <form id="UserTimeline"  method="post" target="">
+            <div class="center">
+                <h3>Description</h3>
+                <p>Returns a collection of the most recent Tweets posted by the user indicated by the screen_name or user_id parameters.</p>
+                <h3>Resource URL</h3>
+                <p class="resource-url">https://api.twitter.com/1.1/statuses/user_timeline.json</p>
+                <h3>Parameters</h3>
+                <div class="form-group">
+                    <label class="control-label">user_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_user_id" id="input_user_id">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">screen_name <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_screen_name" id="input_screen_name">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">since_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_since_id" id="input_since_id">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">count <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_count" id="input_count">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">max_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_max_id" id="input_max_id">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">trim_user <span class="label label-info">optional</span></label>
+                    <label for="trim_user:1"><input type="radio" name="parameters_trim_user" value="true" id="input_trim_user:1">true</label>
+                    <label for="trim_user:0"><input type="radio" name="parameters_trim_user" value="" id="input_trim_user:0">false</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">exclude_replies <span class="label label-info">optional</span></label>
+                    <label for="exclude_replies:1"><input type="radio" name="parameters_exclude_replies" value="true" id="input_exclude_replies:1">true</label>
+                    <label for="exclude_replies:0"><input type="radio" name="parameters_exclude_replies" value="" id="input_exclude_replies:0">false</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">contributor_details <span class="label label-info">optional</span></label>
+                    <label for="contributor_details:1"><input type="radio" name="parameters_contributor_details" value="true" id="input_contributor_details:1">true</label>
+                    <label for="contributor_details:0"><input type="radio" name="parameters_contributor_details" value="" id="input_contributor_details:0">false</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">include_rts <span class="label label-info">optional</span></label>
+                    <label for="include_rts:1"><input type="radio" name="parameters_include_rts" value="true" id="input_include_rts:1">true</label>
+                    <label for="include_rts:0"><input type="radio" name="parameters_include_rts" value="" id="input_include_rts:0">false</label>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="Validation()">Submit</button>
+            </div><!-- /.panel-body -->
+    </form>
+</body>
+</html>
+
+<script>
+function Validation() {
+   $.ajax({
+   type: "POST",
+   url: "/UserTimelineUsingParams",
+   data: $('#UserTimeline').serialize()
+}).done(function( response ) {
+
+     var w = window.open("Results", "popupWindow", "width=600, height=400, scrollbars=yes " );
+     w.document.open();
+     w.document.write(response);
+     w.document.close();
+
+});
+}
+
+</script>

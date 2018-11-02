@@ -1,53 +1,26 @@
-import requests
-import base64
-import pdb
-from urllib.parse import parse_qs
+# code by Rajshree
+from Utils import oauth_req
+
+# building the query string from the post form data
 
 
-def searchresults(formdata):
-    searchparams = parse_qs(formdata['param'])
+def buildquerydataforsearch(formdata):
+    querydata = '?'
 
-    print('122343', searchparams.get("parameters_q"))
-
-    client_key = 'BcPXZRwvvcWCCMKU0tZsN2EGY'
-    client_secret = 'QwGSx6nFRYigJsszAGpZemDcgls1kp4otA3mEmsczwVi7u5y5J'
-
-    key_secret = '{}:{}'.format(client_key, client_secret).encode('ascii')
-    b64_encoded_key = base64.b64encode(key_secret)
-    b64_encoded_key = b64_encoded_key.decode('ascii')
-
-    base_url = 'https://api.twitter.com/'
-    auth_url = '{}oauth2/token'.format(base_url)
-
-    auth_headers = {
-        'Authorization': 'Basic {}'.format(b64_encoded_key),
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-    }
-
-    auth_data = {
-        'grant_type': 'client_credentials'
-    }
-
-    auth_resp = requests.post(auth_url, headers=auth_headers, data=auth_data)
-
-    access_token = auth_resp.json()['access_token']
-
-    search_headers = {
-        'Authorization': 'Bearer {}'.format(access_token)
-    }
-
-    search_params = {
-        'q': 'music',
-        'result_type': 'recent',
-        'count': 1
-    }
-
-    search_url = '{}1.1/search/tweets.json'.format(base_url)
-
-    search_resp = requests.get(search_url, headers=search_headers, params=search_params)
-    search_data = search_resp.json()
-    print(search_data)
-    return search_data
-
-
-
+    if formdata['parameters_q'] != "":
+        querydata = querydata + 'q=' + formdata['parameters_q']
+    if formdata['parameters_geocode'] != "":
+        querydata = querydata + '&geocode=' + formdata['parameters_geocode']
+    if formdata['parameters_lang'] != "":
+        querydata = querydata + '&lang=' + formdata['parameters_lang']
+    if formdata['parameters_locale'] != "":
+        querydata = querydata + '&locale=' + formdata['parameters_locale']
+    if formdata['parameters_count'] != "":
+        querydata = querydata + '&count=' + formdata['parameters_count']
+    if formdata['parameters_until'] != "":
+        querydata = querydata + '&until=' + formdata['parameters_until']
+    if formdata['parameters_since_id'] != "":
+        querydata = querydata + '&since_id=' + formdata['parameters_since_id']
+    if formdata['parameters_max_id'] != "":
+        querydata = querydata + '&max_id=' + formdata['parameters_max_id']
+    return oauth_req('https://api.twitter.com/1.1/search/tweets.json' + querydata)
