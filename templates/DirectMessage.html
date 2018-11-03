@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DirectMessage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    .center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    }
+    </style>
+</head>
+<body>
+
+    <form id="DirectMessage"  method="post" target="">
+            <div class="center">
+                <h3>Description</h3>
+                <p>Returns the 20 most recent direct messages sent to the authenticating user.</p>
+                <h3>Resource URL</h3>
+                <p class="resource-url">https://api.twitter.com/1.1/direct_messages.json</p>
+                <h3>Parameters</h3>
+                <div class="form-group">
+                    <label class="control-label">since_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_q" id="input_q">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">max_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_geocode" id="input_geocode">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">count <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_lang" id="input_lang">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">include_entities <span class="label label-info">optional</span></label>
+                    <label for="search:result_type:mixed" ><input type="radio" name="parameters_result_type" value="true" id="input_mixed">true</label>
+                    <label for="search:result_type:recent"><input type="radio" name="parameters_result_type" value="true" id="input_recent">false</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">skip_status <span class="label label-info">optional</span></label>
+                    <label for="search:result_type:mixed" ><input type="radio" name="parameters_result_type" value="true" id="input_mixed">true</label>
+                    <label for="search:result_type:recent"><input type="radio" name="parameters_result_type" value="true" id="input_recent">false</label>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="Validation()">Submit</button>
+
+            </div><!-- /.panel-body -->
+    </form>
+</body>
+</html>
+
+<script>
+function Validation() {
+   $.ajax({
+   type: "POST",
+   url: "/SearchUsingParams",
+   data: $('#SearchTweets').serialize()
+}).done(function( response ) {
+
+     var w = window.open("Results", "popupWindow", "width=600, height=400, scrollbars=yes " );
+     w.document.open();
+     w.document.write(response);
+     w.document.close();
+
+});
+}
+
+</script>
