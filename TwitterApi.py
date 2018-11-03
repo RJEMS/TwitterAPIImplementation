@@ -5,8 +5,9 @@ from UserTimeline import buildquerydataforusertimeline
 from Friendships_create import buildquerydataforfriendshipscreate
 from DirectMessage import buildquerydatafordirectmessage
 from Tweet import buildtweet
+from UsersLookup import buildlookup
 from DeleteTweet import builddeletetweet
-from UsersLookup import builduserslookup
+
 
 app = Flask(__name__)
 
@@ -122,4 +123,4 @@ def userslookup():
 
 @app.route('/UsersLookupUsingParam', methods=['POST'])
 def builduserslookup():
-        return builduserslookup(request.form)
+        return buildlookup(request.form)
