@@ -4,6 +4,8 @@ from SearchTweets import buildquerydataforsearch
 from UserTimeline import buildquerydataforusertimeline
 from Friendships_create import buildquerydataforfriendshipscreate
 from DirectMessage import buildquerydatafordirectmessage
+from Tweet import buildtweet
+from DeleteTweet import builddeletetweet
 import json
 
 app = Flask(__name__)
@@ -81,4 +83,32 @@ def directmessage():
 @app.route('/DirectMessageUsingParams', methods=['POST'])
 def directmessageusingparams():
     return buildquerydatafordirectmessage(request.form)
+
+
+# Code by Jonathan
+# rendering Tweet
+@app.route('/Tweet/')
+def updatestatus():
+    return render_template('Tweet.html')
+
+# calling the user timeline api which returns the most recent Tweets by the user based on query parameters.
+
+
+@app.route('/TweetUsingParam', methods=['POST'])
+def updatestatususingparams():
+    return buildtweet(request.form)
+
+# Code by Jonathan
+# rendering Tweet
+@app.route('/DeleteTweet/')
+def deletetweet():
+    return render_template('DeleteTweet.html')
+
+# calling the user timeline api which returns the most recent Tweets by the user based on query parameters.
+
+
+@app.route('/DeleteTweetUsingParam', methods=['POST'])
+def deletetweetusingparams():
+    return builddeletetweet(request.form)
+
 
