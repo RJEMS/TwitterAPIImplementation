@@ -2,9 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Users Lookup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    .center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    }
+    </style>
 </head>
+
 <body>
 
+    <form id="UsersLookup"  method="post" target="">
+            <div class="center">
+                <h3>Description</h3>
+                <p>Returns fully-hydrated user objects for up to 100 users per request,
+                    as specified by comma-separated values passed to the user_id and/or screen_name parameters.</p>
+                <h3>Resource URL</h3>
+                <p class="resource-url">https://api.twitter.com/1.1/users/lookup.json</p>
+                <h3>Parameters</h3>
+                <div class="form-group">
+                    <label class="control-label">screen_name <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_screen_name" id="input_screen_name">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">user_id <span class="label label-info">optional</span></label>
+                    <input type="text" class="form-control" name="parameters_user_id" id="input_user_id">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">include_entities <span class="label label-info">optional</span></label>
+                    <p>
+                        <label for="search:include_entities:1"><input type="radio" name="parameters_include_entities" value="true" id="input_include_entities:1"> true</label>
+                    </p>
+                    <p>
+                        <label for="search:include_entities:0"><input type="radio" name="parameters_include_entities" value="" id="input_include_entities:0"> false</label>
+                    </p>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="Validation()">Submit</button>
+
+
+            </div><!-- /.panel-body -->
+    </form>
 </body>
+
 </html>
+
+<script>
+function Validation() {
+   $.ajax({
+   type: "POST",
+   url: "/UsersLookupUsingParam",
+   data: $('#UsersLookup').serialize()
+}).done(function( response ) {
+
+     var w = window.open("Results", "popupWindow", "width=600, height=400, scrollbars=yes " );
+     w.document.open();
+     w.document.write(response);
+     w.document.close();
+
+});
+}
+
+</script>

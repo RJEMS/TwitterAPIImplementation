@@ -6,7 +6,7 @@ from Friendships_create import buildquerydataforfriendshipscreate
 from DirectMessage import buildquerydatafordirectmessage
 from Tweet import buildtweet
 from DeleteTweet import builddeletetweet
-import json
+from UsersLookup import builduserslookup
 
 app = Flask(__name__)
 
@@ -112,3 +112,14 @@ def deletetweetusingparams():
     return builddeletetweet(request.form)
 
 
+# Code by Emmeline
+# rendering Users Lookup
+@app.route('/UsersLookup/')
+def userslookup():
+    return render_template('UsersLookup.html')
+
+# calling the users lookup api that would return the user(s) based on the query parameters
+
+@app.route('/UsersLookupUsingParam', methods=['POST'])
+def builduserslookup():
+        return builduserslookup(request.form)
