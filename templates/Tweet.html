@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Tweets</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    .center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    }
+    </style>
+</head>
+<body>
+
+    <form id="Tweet"  method="post" target="">
+            <div class="center">
+                <h3>Description</h3>
+                <p>Tweet this.</p>
+                <h3>Resource URL</h3>
+                <p class="resource-url">https://api.twitter.com/1.1/statuses/update.json</p>
+                <h3>Parameters</h3>
+                <div class="form-group">
+                    <label class="control-label">Tweet <span class="label label-danger">required</span></label>
+                    <input type="text" class="form-control" name="parameters_tweet" id="input_tweet">
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="Validation()">Submit</button>
+
+                </div>
+            </div><!-- /.panel-body -->
+    </form>
+</body>
+</html>
+
+<script>
+function Validation() {
+   $.ajax({
+   type: "POST",
+   url: "/TweetUsingParam",
+   data: $('#Tweet').serialize()
+}).done(function( response ) {
+
+     var w = window.open("Results", "popupWindow", "width=600, height=400, scrollbars=yes " );
+     w.document.open();
+     w.document.write(response);
+     w.document.close();
+
+});
+}
+
+</script>
