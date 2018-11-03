@@ -1,4 +1,4 @@
-# code by Rajshree
+# code by Jonathan
 from Utils import oauth_post
 from urllib.parse import quote
 
