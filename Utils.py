@@ -14,3 +14,11 @@ def oauth_req(url, http_method="GET", post_body=b'', http_headers=None):
     client = oauth2.Client(consumer, token)
     resp, content = client.request(url, method=http_method, body=post_body, headers=http_headers)
     return content
+
+
+def oauth_post(url, http_method="POST", post_body=b'', http_headers=None):
+    consumer = oauth2.Consumer(key=CLIENT_KEY, secret=CLIENT_SECRET)
+    token = oauth2.Token(key=KEY, secret=SECRET)
+    client = oauth2.Client(consumer, token)
+    resp, content = client.request(url, method=http_method, body=post_body, headers=http_headers)
+    return content
