@@ -1,3 +1,11 @@
+# Team Members
+ 
+# Emmeline Tsen
+# Sindhuja Ramini
+# Matt DiPietro
+# Jonathan Gee
+# Rajshree Chauhan
+
 # Run these commands from the project directory
 export FLASK_APP=TwitterApi.py
 export FLASK_DEBUG=1
