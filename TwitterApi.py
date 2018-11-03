@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template, request
 from SearchTweets import buildquerydataforsearch
 from UserTimeline import buildquerydataforusertimeline
+from Friendships_create import buildquerydataforfriendshipscreate
+from DirectMessage import buildquerydatafordirectmessage
 import json
 
 app = Flask(__name__)
@@ -53,4 +55,30 @@ def usertimeline():
 @app.route('/UserTimelineUsingParams', methods=['POST'])
 def usertimelineusingparams():
         return buildquerydataforusertimeline(request.form)
+
+# Code by Matt
+# rendering direct message
+@app.route('/FriendShipsCreate/')
+def friendshipscreate():
+    return render_template('Friendships_create.html')
+
+# calling the user timeline api which returns the most recent Tweets by the user based on query parameters.
+
+
+@app.route('/FriendShipsCreateUsingParams', methods=['POST'])
+def friendshipscreateusingparams():
+        return buildquerydataforfriendshipscreate(request.form)
+
+# Code by Matt
+# rendering Direct message
+@app.route('/DirectMessage/')
+def directmessage():
+    return render_template('DirectMessage.html')
+
+# calling the user timeline api which returns the most recent Tweets by the user based on query parameters.
+
+
+@app.route('/DirectMessageUsingParams', methods=['POST'])
+def directmessageusingparams():
+    return buildquerydatafordirectmessage(request.form)
 
