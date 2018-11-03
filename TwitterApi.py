@@ -7,6 +7,7 @@ from DirectMessage import buildquerydatafordirectmessage
 from Tweet import buildtweet
 from UsersLookup import buildlookup
 from DeleteTweet import builddeletetweet
+from Trends import buildtrendsquery
 
 
 app = Flask(__name__)
@@ -124,3 +125,15 @@ def userslookup():
 @app.route('/UsersLookupUsingParam', methods=['POST'])
 def builduserslookup():
         return buildlookup(request.form)
+
+# Code by Sindhuja
+# rendering Users Lookup
+@app.route('/Trends/')
+def trends():
+    return render_template('Trends.html')
+
+# calling the users lookup api that would return the user(s) based on the query parameters
+
+@app.route('/TrendsUsingParams', methods=['POST'])
+def buildtrends():
+        return buildtrendsquery(request.form)
