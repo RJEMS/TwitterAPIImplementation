@@ -3,7 +3,7 @@ from flask import render_template, request
 from SearchTweets import buildquerydataforsearch
 from UserTimeline import buildquerydataforusertimeline
 from Friendships_create import buildquerydataforfriendshipscreate
-from DirectMessage import buildquerydatafordirectmessage
+from Friendships_update import buildquerydataforfriendshipsupdate
 from Tweet import buildtweet
 from UsersLookup import buildlookup
 from DeleteTweet import builddeletetweet
@@ -75,16 +75,16 @@ def friendshipscreateusingparams():
 
 # Code by Matt
 # rendering Direct message
-@app.route('/DirectMessage/')
-def directmessage():
-    return render_template('DirectMessage.html')
+@app.route('/FriendShipsUpdate/')
+def friendshipsupdate():
+    return render_template('Friendships_update.html')
 
 # calling the user timeline api which returns the most recent Tweets by the user based on query parameters.
 
 
-@app.route('/DirectMessageUsingParams', methods=['POST'])
-def directmessageusingparams():
-    return buildquerydatafordirectmessage(request.form)
+@app.route('/FriendShipsUpdateUsingParams', methods=['POST'])
+def friendshipsupdateusingparams():
+    return buildquerydataforfriendshipsupdate(request.form)
 
 
 # Code by Jonathan
