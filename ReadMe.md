@@ -10,6 +10,8 @@ export FLASK_APP=TwitterApi.py
 export FLASK_DEBUG=1
 flask run
 
+# To execute unit tests found in Utils_Tests.py
+python -m unittest Utils_Tests.Testing
 
 #Steps
 # 1 - Create html pages for the api you are implementing and add route to TwitterApi.py for rendering the html
