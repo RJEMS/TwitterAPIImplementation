@@ -41,9 +41,9 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">result_type <span class="label label-info">optional</span></label>
-                    <label for="search:result_type:mixed" ><input type="radio" name="parameters_result_type" value="true" id="input_mixed">mixed</label>
-                    <label for="search:result_type:recent"><input type="radio" name="parameters_result_type" value="true" id="input_recent">recent</label>
-                    <label for="search:result_type:popular"><input type="radio" name="parameters_result_type" value="true" id="input_popular">popular</label>
+                    <label for="search:result_type:mixed" ><input type="radio" name="parameters_result_type" value="true" id="input_mixed"> mixed</label>
+                    <label for="search:result_type:recent"><input type="radio" name="parameters_result_type" value="true" id="input_recent"> recent</label>
+                    <label for="search:result_type:popular"><input type="radio" name="parameters_result_type" value="true" id="input_popular"> popular</label>
                 </div>
                 <div class="form-group">
                     <label class="control-label">count <span class="label label-info">optional</span></label>
@@ -63,8 +63,12 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">include_entities <span class="label label-info">optional</span></label>
-                    <label for="search:include_entities:1"><input type="radio" name="parameters_include_entities" value="true" id="input_include_entities:1">true</label>
-                    <label for="search:include_entities:0"><input type="radio" name="parameters_include_entities" value="" id="input_include_entities:0">false</label>
+                    <p>
+                        <label for="search:include_entities:1"><input type="radio" name="parameters_include_entities" value="true" id="input_include_entities:1"> true</label>
+                    </p>
+                    <p>
+                        <label for="search:include_entities:0"><input type="radio" name="parameters_include_entities" value="false" id="input_include_entities:0"> false</label>
+                    </p>
                 </div>
 
                 <button type="button" class="btn btn-primary" onclick="Validation()">Submit</button>

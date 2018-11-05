@@ -15,6 +15,8 @@ def buildquerydataforsearch(formdata):
         querydata = querydata + '&lang=' + formdata['parameters_lang']
     if formdata['parameters_locale'] != "":
         querydata = querydata + '&locale=' + formdata['parameters_locale']
+    if formdata['parameters_result_type'] != "":
+        querydata = querydata + '&result_type=' + formdata['parameters_result_type']
     if formdata['parameters_count'] != "":
         querydata = querydata + '&count=' + formdata['parameters_count']
     if formdata['parameters_until'] != "":
@@ -23,4 +25,6 @@ def buildquerydataforsearch(formdata):
         querydata = querydata + '&since_id=' + formdata['parameters_since_id']
     if formdata['parameters_max_id'] != "":
         querydata = querydata + '&max_id=' + formdata['parameters_max_id']
+    if formdata['parameters_include_entities'] != "":
+        querydata = querydata + '&include_entities=' + formdata['parameters_include_entities']
     return oauth_req('https://api.twitter.com/1.1/search/tweets.json' + querydata)
