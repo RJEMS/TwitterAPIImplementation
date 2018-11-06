@@ -10,5 +10,4 @@ def builddeletetweet(formdata):
 
     if formdata['parameters_id'] != "":
         querydata = querydata + quote(formdata['parameters_id']) + '.json'
-    print(querydata)
     return oauth_post(querydata)
